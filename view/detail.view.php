@@ -29,20 +29,24 @@ $relatedProducts = $data['relatedProducts'];
                   <?php if($product->percent_sale!=null){?>
                   <p class="special-price">
                     <span class="price-label">Giá khuyến mãi</span>
-                    <span class="price"> <?=number_format($product->value - ($product->percent_sale * $product->value))?> vnđ</span>
+                    <span class="price"> <?=number_format($product->value - ($product->percent_sale * $product->value),2)?> $</span>
                   </p>
                   <p class="old-price">
                     <span class="price-label">Giá gốc:</span>
-                    <span class="price"> <?=number_format($product->value)?> vnđ </span>
+                    <span class="price"> <?=number_format($product->value,2)?> $ </span>
                   </p>
                   <?php }else{?>
                   <p clas s="special-price">
                     <span class="price-label">Đơn giá</span>
-                    <span class="price"> <?=number_format($product->value)?> vnđ </span>
+                    <span class="price"> <?=number_format($product->value,2)?> $ </span>
                   </p>
                   <?php }?>
                 </div>
-
+            <?php if($product->quanlity_exist==0){?>
+                  <div style="background:#fed700;width:20%">
+                    <h3 style="color:red">HẾT HÀNG</h3>
+                  </div>
+            <?php }?>
                 <div class="short-description">
                   <h2>Thông tin chi tiết</h2>
                   <?=$product->detail?>
@@ -56,16 +60,16 @@ $relatedProducts = $data['relatedProducts'];
                         <div class="dec qtybutton" onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) && qty>1) result.value--;return false;">
                           <i class="fa fa-minus">&nbsp;</i>
                         </div>
-                        <input type="text" class="qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
-                        <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;"
+                        <input type="number" class="qty" title="Qty" value="1" min="1" max="10" id="qty" name="qty" readonly>
+                        <div onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )&&qty<10) result.value++;return false;"
                           class="inc qtybutton">
                           <i class="fa fa-plus">&nbsp;</i>
                         </div>
                       </div>
                     </div>
-                    <button id-sp="<?=$product->product_code?>" class="button pro-add-to-cart" title="Add to Cart" type="button">
+                    <button id-sp="<?=$product->product_code?>" class="button pro-add-to-cart" title="Thêm Giỏ Hàng" type="button">
                       <span>
-                        <i class="fa fa-shopping-cart"></i> Add to Cart</span>
+                        <i class="fa fa-shopping-cart"></i> Thêm Giỏ Hàng</span>
                     </button>
                 </div>
 
@@ -109,7 +113,7 @@ $relatedProducts = $data['relatedProducts'];
                                       <img class="hover-img" src="public/source/images/products/<?=$p->image?>" alt="html template">
                                     </figure>
                                   </a>
-                                  <button id-sp="<?=$p->id?>" type="button" class="add-to-cart-mt">
+                                  <button id-sp="<?=$p->product_code?>" type="button" class="add-to-cart-mt">
                                     <i class="fa fa-shopping-cart"></i>
                                     <span> Add to Cart</span>
                                   </button>
@@ -125,14 +129,14 @@ $relatedProducts = $data['relatedProducts'];
                                     <div class="price-box">
                                       <?php if($p->percent_sale!= null){?>
                                       <p class="special-price">
-                                        <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value))?> vnđ</span>
+                                        <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value),2)?> $</span>
                                       </p>
                                       <p class="old-price">
-                                        <span class="price"> <?=number_format($p->value) ?>vnđ</span>
+                                        <span class="price"> <?=number_format($p->value,2) ?>$</span>
                                       </p>
                                       <?php }else {?>
                                       <p class="special-price">
-                                        <span class="price"> <?=number_format($p->value)?> vnđ</span>
+                                        <span class="price"> <?=number_format($p->value,2)?> $</span>
                                       </p>
                                       <?php }?>
                                     </div>

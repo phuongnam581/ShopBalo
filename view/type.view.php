@@ -12,7 +12,6 @@ $arrayCount=get_object_vars($object);
 ?>
 <!-- Main Container -->
 <span id="count" style="display:none;"><?=count($products)?></span>
-
 <div class="main-container col2-left-layout">
       <div class="container">
         <div class="row">
@@ -80,7 +79,7 @@ $arrayCount=get_object_vars($object);
                                   <img class="hover-img" src="public/source/images/products/<?=$p->image?>" alt="html template" style="width:87%;height:100%">
                                 </figure>
                               </a>
-                              <button id-sp="<?=$p->id?>" type="button" class="add-to-cart-mt">
+                              <button id-sp="<?=$p->product_code?>" type="button" class="add-to-cart-mt">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span> Add to Cart</span>
                               </button>
@@ -96,14 +95,14 @@ $arrayCount=get_object_vars($object);
                                 <div class="price-box">
                                   <?php if($p->percent_sale != null):?>
                                   <p class="special-price">
-                                    <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value))?> vnđ</span>
+                                    <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value),2)?> $</span>
                                   </p>
                                   <p class="old-price">
-                                    <span class="price"> <?=number_format($p->value) ?>vnđ</span>
+                                    <span class="price"> <?=number_format($p->value,2) ?>$</span>
                                   </p>
                                   <?php else :?>
                                   <p class="special-price">
-                                    <span class="price"> <?=number_format($p->value)?> vnđ</span>
+                                    <span class="price"> <?=number_format($p->value,2)?> $</span>
                                   </p>
                                   <?php endif ?>
                                 </div>
@@ -188,7 +187,6 @@ $arrayCount=get_object_vars($object);
                 showPage(1);
                 ///** Cần truyền giá trị vào đây **///
                 var totalRows =$('#count').text(); // Tổng số sản phẩm hiển thị
-                alert(totalRows);
                 // console.log(totalRows);
                 var btnPage = 3; // Số nút bấm hiển thị di chuyển trang
                 var iTotalPages = Math.ceil(totalRows / pageSize);

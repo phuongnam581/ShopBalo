@@ -33,13 +33,13 @@ class Cart
         }
         
 		$giohang['qty'] =  $giohang['qty'] + $qty;
-		$giohang['price'] = $item->value * $giohang['qty'];
-		$giohang['discountPrice'] = ($item->value - ($item->value * $item->percent_sale)) * $giohang['qty'];
+		$giohang['price'] = $item->value;
+		$giohang['discountPrice'] = ($item->value - ($item->value * $item->percent_sale));
 
 		$this->items[$item->product_code] = $giohang;
 		$this->totalQty = $this->totalQty + $qty;
 		$this->totalPrice = $this->totalPrice + $qty*$giohang['item']->value;
-		$this->promtPrice = $this->promtPrice + $qty*($giohang['item']->value - ($giohang['item']->value * $giohang['item']->percent_sale));
+		$this->promtPrice = $this->promtPrice + $qty*(($giohang['item']->value - ($giohang['item']->value * $giohang['item']->percent_sale)));
 		
 	}
 	
@@ -62,8 +62,8 @@ class Cart
 				$this->totalQty -= $this->items[$id]['qty'];
 			}
 		}
-		$giohang['price'] = $item->value * $giohang['qty'];
-		$giohang['discountPrice'] = ($item->value - ($item->value * $item->percent_sale)) * $giohang['qty'];
+		$giohang['price'] = $item->value;
+		$giohang['discountPrice'] = ($item->value - ($item->value * $item->percent_sale));
 
 		$this->items[$id] = $giohang;
 		$this->totalQty = $this->totalQty + $qty;
@@ -75,10 +75,10 @@ class Cart
 	public function reduceByOne($id){ 
 		$this->items[$id]['qty']--;
 		$this->items[$id]['price'] -= $this->items[$id]['item']->value;
-		$this->items[$id]['discountPrice'] -= $this->items[$id]['item']->promotion_price;
+		$this->items[$id]['discountPrice'] -= ($this->items[$id]['item']->value - ($this->items[$id]['item']->value * $this->items[$id]['item']->percent_sale));
 		$this->totalQty--;
 		$this->totalPrice = ($this->totalPrice - $this->items[$id]['item']->value);
-		$this->promtPrice = ($this->promtPrice - $this->items[$id]['item']->promotion_price);
+		$this->promtPrice = ($this->promtPrice - ($this->items[$id]['item']->value - ($this->items[$id]['item']->value * $this->items[$id]['item']->percent_sale)));
 		
 		if($this->items[$id]['qty']<=0){
 			unset($this->items[$id]);
@@ -88,8 +88,9 @@ class Cart
 	//xóa sản phẩm khỏi cart
 	public function removeItem($id){
 		$this->totalQty -= $this->items[$id]['qty'];
-		$this->totalPrice -= $this->items[$id]['price'];
-		$this->promtPrice -= $this->items[$id]['discountPrice'];		
+		$this->totalPrice -=  ($this->items[$id]['item']->value * $this->items[$id]['qty']);
+		$this->promtPrice -= ($this->items[$id]['item']->value - ($this->items[$id]['item']->value * $this->items[$id]['item']->percent_sale))* $this->items[$id]['qty'];	
+	//	$this->promtPrice -=  ($this->items[$id]['item']->value * $this->items[$id]['item']->percent_sale);		
 		unset($this->items[$id]);
 	}
 	

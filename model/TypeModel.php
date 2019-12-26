@@ -11,7 +11,7 @@ class TypeModel extends DBConnect{
                 RIGHT JOIN products p 
                 ON sd.id_product=p.product_code
                 AND '$date' >= s.date_start AND '$date' <=s.date_end 
-                WHERE p.id_categories ='$id'";
+                WHERE p.id_categories ='$id' AND p.deleted='0'";
         return $this->loadMoreRows($sql);
     }
 

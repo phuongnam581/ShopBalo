@@ -12,9 +12,9 @@
                     <h4>Login</h4>
                <p class="before-login-text">Welcome back! Sign in to your account</p>
                 <label for="emmail_login">Email address<span class="required">*</span></label>
-                <input id="emmail_login" type="text" class="form-control" name="email">
+                <input id="emmail_login" type="email" class="form-control" name="email" minlength="5" maxlength="50">
                 <label for="password_login">Password<span class="required">*</span></label>
-                <input id="password_login" type="password" class="form-control" name="pass">
+                <input id="password_login" type="password" class="form-control" name="pass" minlength="6" maxlength="10">
                 <div class="input-tb" style="color:red"></div>
                 <?php if(isset($_SESSION['error'])):
 		                echo "<div style='color:red;' class='input-tb'>".$_SESSION['error']."</div>";
@@ -28,20 +28,20 @@
                 <form action="login.php" method="post">
                 <h4>Register</h4><p>Create your very own account</p>
                 <label for="fullname_register">Fullname<span class="required">*</span></label>
-                <input id="fullname_register" type="text" class="form-control" name="fullname_regis">
+                <input id="fullname_register" type="text" class="form-control" name="fullname_regis" minlength="5" maxlength="20">
                 <label for="gender_register">Gender<span class="required">*</span></label><br>
                 <input type="radio" name="gender" value="nam" checked style="width:20px;">nam
                 <input type="radio" name="gender" value="nữ" style="width:20px;margin-left:30px;">nữ	<br>										
-                <label for="email_register">Email address<span class="required">*</span></label>
-                <input id="email_register" type="text" class="form-control" name="email_regis">
                 <label for="address_register">Address<span class="required">*</span></label>
-                <input id="address_register" type="text" class="form-control" name="address_regis">
+                <input id="address_register" type="text" class="form-control" name="address_regis" minlength="5" maxlength="50">
                 <label for="phone_register">Phone<span class="required">*</span></label>
-                <input id="phone_register" type="text" class="form-control" name="phone_regis">
+                <input id="phone_register" type="text" class="form-control" name="phone_regis" minlength="10" maxlength="10">
                 <label for="pass_register">Password<span class="required">*</span></label>
-                <input id="pass_register" type="password" class="form-control" name="pass_regis">
-                <?php if(isset($_SESSION['error_regis'])){
-		                echo "<div style='color:red;' class='input-tb'>".$_SESSION['error_regis']."</div>";
+                <input id="pass_register" type="password" class="form-control" name="pass_regis" minlength="6" maxlength="10">
+                <label for="email_register">Email address<span class="required">*</span></label>
+                <input id="email_register" type="email" class="form-control" name="email_regis" minlength="10" maxlength="50">
+                <?php if(isset($_SESSION['regiserror'])){
+		                echo "<div style='color:red;' class='input-tb'>".$_SESSION['regiserror']."</div>";
 	              }else if(isset($_SESSION['success_regis'])){
                   echo "<div style='color: green;background: #fed700;margin-top: 10px;width: 262px;height: 35px;text-align: center;padding-top: 7px;font-size: 16px;' class='input-tb'>".$_SESSION['success_regis']."</div>";
                 }
@@ -49,13 +49,7 @@
                 <button class="button"><i class="fa fa-user"></i>&nbsp; <span>Register</span></button>
                 </form>          
                 <div class="register-benefits">
-												<h5>Sign up today and you will be able to :</h5>
-												<ul>
-													<li>Speed your way through checkout</li>
-													<li>Track your orders easily</li>
-													<li>Keep a record of all your purchases</li>
-												</ul>
-											</div>
+												
               </div>
    
     
@@ -68,8 +62,8 @@
    if(!isset($_SESSION)) session_start();
   if(isset($_SESSION['error'])){
     unset($_SESSION['error']);
-  }else if(isset($_SESSION['error_regis'])){
-    unset($_SESSION['error_regis']);
+  }else if(isset($_SESSION['regiserror'])){
+    unset($_SESSION['regiserror']);
   }else if(isset($_SESSION['success_regis'])){
     unset($_SESSION['success_regis']);
   }

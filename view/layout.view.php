@@ -55,7 +55,42 @@
 
   <!-- style CSS -->
   <link rel="stylesheet" type="text/css" href="public/source/css/style.css" media="all">
-
+  <style>
+    .mega-menu-category > .nav > li.active > a{
+      background:#f994af;
+    }
+    .footer-newsletter {
+      background:#f994af;
+    }
+    .top-search {
+      margin-top:0px;
+      margin-bottom:-4px;
+    }
+    .header-container{
+      background:white;
+    }
+    .add-to-cart-mt {
+      background:#f994af;
+    }
+    button.button.pro-add-to-cart {
+      background: #f994af;
+      border: 2px #f994af solid;
+    }
+    .page-order .cart_navigation a.checkout-btn {
+      background: #f994af;
+      border: 2px #f994af solid;
+    }
+    .add-to-cart-mt:hover {
+      background: black;
+    }
+    button.button {
+      background: #f994af;
+      border: 2px #f994af solid;
+    }
+    .bullet.selected {
+      background: #f994af !important;
+    }
+  </style>
 
 </head>
 
@@ -90,8 +125,8 @@
             <div class="row">
               <div class="col-lg-4 col-sm-4 hidden-xs">
                 <!-- Default Welcome Message -->
-                <div class="welcome-msg ">Welcome to MyStore! </div>
-                <span class="phone hidden-sm">Call Us: +123.456.789</span>
+                <div class="welcome-msg ">Chào mừng tới Balo Shop! </div>
+                <span class="phone hidden-sm">Điện Thoại: +84.212.6547</span>
               </div>
 
               <!-- top links -->
@@ -129,14 +164,13 @@
               <!-- Header Logo -->
               <div class="logo">
                 <a title="e-commerce" href="index.html">
-                  <img alt="responsive theme logo" src="public/source/images/logo.png">
+                  <img alt="responsive theme logo" src="public/source/images/logobalo.jpg" style="width:170px;height:70px;">
                 </a>
               </div>
               <!-- End Header Logo -->
             </div>
             <div class="col-xs-9 col-sm-6 col-md-6">
               <!-- Search -->
-
               <div class="top-search">
                 <div id="search">
                   <form action="search.html">
@@ -149,6 +183,8 @@
                   </form>
                 </div>
               </div>
+
+             
 
               <!-- End Search -->
             </div>
@@ -165,13 +201,13 @@
                       <div class="shoppingcart-inner hidden-xs" id="shoppingcart-inner">
                         <span class="cart-title">Giỏ hàng của bạn</span>
                         
-                        <span class="cart-total">
+                        <span class="cart-total" id="cart-total">
                           <?php 
                           if(isset($_SESSION['cart'])){
                             echo $_SESSION['cart']->totalQty;
                             echo " item(s) - ";
-                            echo number_format($_SESSION['cart']->promtPrice);
-                            echo " vnđ";
+                            echo number_format($_SESSION['cart']->promtPrice,2);
+                            echo " $";
                           }
                           else{
                             echo 0;
@@ -192,7 +228,7 @@
     <!-- end header -->
     
     <!-- Navbar -->
-    <nav>
+    <nav style="background:#f994af;height:55px;">
       <div class="container">
         <div class="row">
           <div class="col-md-3 col-sm-4">
@@ -205,13 +241,13 @@
             <div class="mega-container visible-lg visible-md visible-sm">
               <div class="navleft-container">
                 <div class="mega-menu-title">
-                  <h3>Categories</h3>
+                  <h3>Danh Mục</h3>
                 </div>
                 <div class="mega-menu-category">
                   <ul class="nav">
                     <?php foreach($menu as $m):?>
                    
-                    <li class="nosub">
+                    <li class="nosub tungdanhmuc">
                       <a href="type.php?type=<?=$m->id?>">
                         <i class="icon fa <?=$m->icon?> fa-fw"></i> <?=$m->name?></a>
                     </li>
@@ -230,38 +266,25 @@
                   <div class="mt-root-item">
                     <a href="index.html">
                       <div class="title title_font">
-                        <span class="title-text">Home</span>
+                        <span class="title-text">Trang Chủ</span>
                       </div>
                     </a>
                   </div>
                 </li>
-                <li class="mt-root">
-                  <div class="mt-root-item">
-                    <a href="shop_grid.html">
-                      <div class="title title_font">
-                        <span class="title-text">Contact Us</span>
-                      </div>
-                    </a>
-                  </div>
-                </li>
-                <li class="mt-root">
-                  <div class="mt-root-item">
-                    <a href="about_us.html">
-                      <div class="title title_font">
-                        <span class="title-text">about us</span>
-                      </div>
-                    </a>
-                  </div>
-                </li>
-                <li class="mt-root demo_custom_link_cms">
-                  <div class="mt-root-item">
-                    <a href="blog_full_width.html">
-                      <div class="title title_font">
-                        <span class="title-text">Blog</span>
-                      </div>
-                    </a>
-                  </div>
-                </li>
+               <li  class="mt-root demo_custom_link_cms">
+               <!-- <div class="top-search">
+                <div id="search">
+                  <form action="search.html" method="post">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search" name="keyword">
+                      <button class="btn-search" type="submit">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div> -->
+               </li>
               </ul>
             </div>
           </div>
@@ -278,8 +301,9 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body">
-        <h5>Đã thêm <i class="name-res">...</i> vào giỏ hàng</h5>
-        <h6><a href="shopping-cart.php">Xem giỏ hàng</a></h6>
+        <!-- <h5>Đã thêm <i class="name-res">...</i> vào giỏ hàng</h5>
+        <h6><a href="shopping-cart.php">Xem giỏ hàng</a></h6> -->
+        <h5>Sản Phẩm Đã Hết Hàng</h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
@@ -290,8 +314,8 @@
 </div>
 
 
-    <!-- Footer -->
-
+   
+ 
     <footer>
       <div class="footer-newsletter">
         <div class="container">
@@ -312,26 +336,12 @@
                     <i class="fa fa-facebook"></i>
                   </a>
                 </li>
-                <li class="social-network googleplus">
-                  <a title="Connect us on Google+" target="_blank" href="https://plus.google.com/">
-                    <i class="fa fa-google-plus"></i>
-                  </a>
-                </li>
                 <li class="social-network tw">
                   <a title="Connect us on Twitter" target="_blank" href="https://twitter.com/">
                     <i class="fa fa-twitter"></i>
                   </a>
                 </li>
-                <li class="social-network linkedin">
-                  <a title="Connect us on Linkedin" target="_blank" href="https://www.pinterest.com/">
-                    <i class="fa fa-linkedin"></i>
-                  </a>
-                </li>
-                <li class="social-network rss">
-                  <a title="Connect us on Instagram" target="_blank" href="https://instagram.com/">
-                    <i class="fa fa-rss"></i>
-                  </a>
-                </li>
+               
                 <li class="social-network instagram">
                   <a title="Connect us on Instagram" target="_blank" href="https://instagram.com/">
                     <i class="fa fa-instagram"></i>
@@ -342,155 +352,8 @@
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-4 col-xs-12 col-lg-3">
-            <div class="footer-logo">
-              <a href="index-2.html">
-                <img src="public/source/images/footer-logo.png" alt="fotter logo">
-              </a>
-            </div>
-            <p>Lorem Ipsum is simply dummy text of the print and typesetting industry.</p>
-            <div class="footer-content">
-              <div class="email">
-                <i class="fa fa-envelope"></i>
-                <p>Support@themes.com</p>
-              </div>
-              <div class="phone">
-                <i class="fa fa-phone"></i>
-                <p>(800) 0123 456 789</p>
-              </div>
-              <div class="address">
-                <i class="fa fa-map-marker"></i>
-                <p> My Company, 12/34 - West 21st Street, New York, USA</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-            <div class="footer-links">
-              <h3 class="links-title">Information
-                <a class="expander visible-xs" href="#TabBlock-1">+</a>
-              </h3>
-              <div class="tabBlock" id="TabBlock-1">
-                <ul class="list-links list-unstyled">
-                  <li>
-                    <a href="#s">Delivery Information</a>
-                  </li>
-                  <li>
-                    <a href="#">Discount</a>
-                  </li>
-                  <li>
-                    <a href="sitemap.html">Sitemap</a>
-                  </li>
-                  <li>
-                    <a href="#">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <a href="faq.html">FAQs</a>
-                  </li>
-                  <li>
-                    <a href="#">Terms &amp; Condition</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3 col-xs-12 col-lg-3 collapsed-block">
-            <div class="footer-links">
-              <h3 class="links-title">Insider
-                <a class="expander visible-xs" href="#TabBlock-3">+</a>
-              </h3>
-              <div class="tabBlock" id="TabBlock-3">
-                <ul class="list-links list-unstyled">
-                  <li>
-                    <a href="sitemap.html"> Sites Map </a>
-                  </li>
-                  <li>
-                    <a href="#">News</a>
-                  </li>
-                  <li>
-                    <a href="#">Trends</a>
-                  </li>
-                  <li>
-                    <a href="about_us.html">About Us</a>
-                  </li>
-                  <li>
-                    <a href="contact_us.html">Contact Us</a>
-                  </li>
-                  <li>
-                    <a href="#">My Orders</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-2 col-xs-12 col-lg-3 collapsed-block">
-            <div class="footer-links">
-              <h3 class="links-title">Service
-                <a class="expander visible-xs" href="#TabBlock-4">+</a>
-              </h3>
-              <div class="tabBlock" id="TabBlock-4">
-                <ul class="list-links list-unstyled">
-                  <li>
-                    <a href="account_page.html">Account</a>
-                  </li>
-                  <li>
-                    <a href="wishlist.html">Wishlist</a>
-                  </li>
-                  <li>
-                    <a href="shopping_cart.html">Shopping Cart</a>
-                  </li>
-                  <li>
-                    <a href="#">Return Policy</a>
-                  </li>
-                  <li>
-                    <a href="#">Special</a>
-                  </li>
-                  <li>
-                    <a href="#">Lookbook</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer-coppyright">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6 col-xs-12 coppyright"> Copyright © 2019 MyStore. Edit by
-              <a href="https://www.facebook.com/nam"> Nam </a>. All Rights Reserved. </div>
-            <div class="col-sm-6 col-xs-12">
-              <div class="payment">
-                <ul>
-                  <li>
-                    <a href="#">
-                      <img title="Visa" alt="Visa" src="public/source/images/visa.png">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img title="Paypal" alt="Paypal" src="public/source/images/paypal.png">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img title="Discover" alt="Discover" src="public/source/images/discover.png">
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <img title="Master Card" alt="Master Card" src="public/source/images/master-card.png">
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </footer>
-    <a href="#" class="totop"> </a>
+   
   </div>
 
   <!-- End Footer -->
@@ -574,8 +437,13 @@
             id: idSP // $_POST['id']
           },
           success:function(res){
+            console.log(res);
+            if(res==='Hết Hàng'){
               $('.name-res').html(res)
               $('#cartModal').modal('show')
+              return;
+            }
+            $( "#cart-total" ).load(window.location.href + " #cart-total" );
           },
           error:function(){
             console.log('errr')
@@ -595,33 +463,17 @@
             qty: soluong // $_POST['qty']
           },
           success:function(res){
-              $('.name-res').html(res)
-              $('#cartModal').modal('show')
+            console.log(res);
+              if(res==='Hết Hàng'){
+                $('.name-res').html(res)
+                $('#cartModal').modal('show')
+              }
+              $( "#cart-total" ).load(window.location.href + " #cart-total" );
           },
           error:function(){
             console.log('errr')
           }
         })
-    })
-    
-    // $('.pro-add-to-cart .add-to-cart-mt').click(function(){
-		//   $('#cartModal').modal({
-		// 	  backdrop: 'static'
-		//   });
-	  // }); 
-    $('.pro-add-to-cart').click(function(){
-		  $('#cartModal').modal({
-			  backdrop: 'static'
-		  });
-	  }); 
-    $('.add-to-cart-mt').click(function(){
-		  $('#cartModal').modal({
-			  backdrop: 'static'
-		  });
-	  }); 
-    $('.close').click(function(){
-     
-       location.reload();
     })
   })
   

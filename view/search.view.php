@@ -1,6 +1,8 @@
 <?php
 $products = $data['products'];
 $count=count($products);
+// print_r($_GET['keyword']);
+// die;
 ?>
 <div class="main-container col2-left-layout">
       <div class="container">
@@ -47,10 +49,10 @@ $count=count($products);
                 <h3>Tìm thấy <b id="count"><?=count($products)?></b> sản phẩm cho từ khóa <b><?=$_GET['keyword']?></b></h3>
             </div>
 
-              <div class="product-grid-area">
+            <div class="product-grid-area">
                 <ul class="products-grid">
-                  <?php foreach($data['products'] as $p):?>
-                  <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 rows" style="height:350px">
+                  <?php foreach($products as $p):?>
+                  <li class="item col-lg-4 col-md-4 col-sm-6 col-xs-6 rows" style="height:350px;width:30%;background:#fbf8f8;">
                     <div class="product-item">
                       <div class="item-inner">
                           <div class="product-thumbnail">
@@ -65,11 +67,11 @@ $count=count($products);
                               <!-- detail.php?alias=iphone-x-64gb&id=2 -->
                               <a title="<?=$p->name?>" href="<?=$p->product_code?>">
                                 <figure>
-                                  <img class="first-img" src="public/source/images/products/<?=$p->image?>" alt="html template">
-                                  <img class="hover-img" src="public/source/images/products/<?=$p->image?>" alt="html template">
+                                  <img class="first-img" src="public/source/images/products/<?=$p->image?>" alt="html template" style="width:87%;height:50%">
+                                  <img class="hover-img" src="public/source/images/products/<?=$p->image?>" alt="html template" style="width:87%;height:100%">
                                 </figure>
                               </a>
-                              <button data-id="<?=$p->id?>" type="button" class="add-to-cart-mt">
+                              <button id-sp="<?=$p->product_code?>" type="button" class="add-to-cart-mt">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span> Add to Cart</span>
                               </button>
@@ -83,16 +85,16 @@ $count=count($products);
                               <div class="item-content">
                               <div class="item-price">
                                 <div class="price-box">
-                                  <?php if($p->percent_sale != 0):?>
+                                  <?php if($p->percent_sale != null):?>
                                   <p class="special-price">
-                                    <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value))?> vnđ</span>
+                                    <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value),2)?> $</span>
                                   </p>
                                   <p class="old-price">
-                                    <span class="price"> <?=number_format($p->value) ?>vnđ</span>
+                                    <span class="price"> <?=number_format($p->value,2) ?>$</span>
                                   </p>
                                   <?php else :?>
                                   <p class="special-price">
-                                    <span class="price"> <?=number_format($p->value)?> vnđ</span>
+                                    <span class="price"> <?=number_format($p->value,2)?> $</span>
                                   </p>
                                   <?php endif ?>
                                 </div>

@@ -79,9 +79,9 @@ $newProducts = $data['newProducts'];
                                       <img class="hover-img" src="public/source/images/products/<?=$p->image?>" alt="html template">
                                     </figure>
                                   </a>
-                                  <button id-sp="<?=$p->id?>" type="button" class="add-to-cart-mt">
+                                  <button id-sp="<?=$p->product_code?>" type="button" class="add-to-cart-mt">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span> Add to Cart</span>
+                                    <span> Thêm Giỏ Hàng</span>
                                   </button>
                                 </div>
                               </div>
@@ -95,14 +95,14 @@ $newProducts = $data['newProducts'];
                                     <div class="price-box">
                                       <?php if($p->percent_sale != 'null'):?>
                                       <p class="special-price">
-                                        <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value))?> vnđ</span>
+                                        <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value),2)?> $</span>
                                       </p>
                                       <p class="old-price">
-                                        <span class="price"> <?=number_format($p->value) ?> vnđ</span>
+                                        <span class="price"> <?=number_format($p->value,2) ?> $</span>
                                       </p>
                                       <?php else :?>
                                       <p class="special-price">
-                                        <span class="price"> <?=number_format($p->value)?> vnđ</span>
+                                        <span class="price"> <?=number_format($p->value,2)?> $</span>
                                       </p>
                                       <?php endif ?>
                                     </div>
@@ -142,9 +142,9 @@ $newProducts = $data['newProducts'];
                                       <img class="hover-img" src="public/source/images/products/<?=$p->image?>" alt="html template">
                                     </figure>
                                   </a>
-                                  <button id-sp="<?=$p->id?>" type="button" class="add-to-cart-mt">
+                                  <button id-sp="<?=$p->product_code?>" type="button" class="add-to-cart-mt">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span> Add to Cart</span>
+                                    <span> Thêm Giỏ Hàng</span>
                                   </button>
                                 </div>
                               </div>
@@ -158,14 +158,14 @@ $newProducts = $data['newProducts'];
                                     <div class="price-box">
                                       <?php if($p->percent_sale != 'null'):?>
                                       <p class="special-price">
-                                        <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value))?>  vnđ</span>
+                                        <span class="price"> <?=number_format($p->value - ($p->percent_sale * $p->value),2)?>  $</span>
                                       </p>
                                       <p class="old-price">
-                                        <span class="price"> <?=number_format($p->value) ?> vnđ</span>
+                                        <span class="price"> <?=number_format($p->value,2) ?> $</span>
                                       </p>
                                       <?php else :?>
                                       <p class="special-price">
-                                        <span class="price"> <?=number_format($p->value)?> vnđ</span>
+                                        <span class="price"> <?=number_format($p->value,2)?> $</span>
                                       </p>
                                       <?php endif ?>
                                     </div>
@@ -218,9 +218,9 @@ $newProducts = $data['newProducts'];
                               <img class="hover-img" src="public/source/images/products/<?=$p->image?>" alt="html template">
                             </figure>
                           </a>
-                          <button  id-sp="<?=$p->id?>" type="button" class="add-to-cart-mt">
+                          <button  id-sp="<?=$p->product_code?>" type="button" class="add-to-cart-mt">
                             <i class="fa fa-shopping-cart"></i>
-                            <span> Add to Cart</span>
+                            <span> Thêm Giỏ Hàng</span>
                           </button>
                         </div>
                       </div>
@@ -233,7 +233,7 @@ $newProducts = $data['newProducts'];
                           <div class="item-price">
                             <div class="price-box">      
                               <p class="special-price">
-                                <span class="price"> <?=number_format($p->value)?> vnđ</span>
+                                <span class="price"> <?=number_format($p->value,2)?> $</span>
                               </p>
                             </div>
                           </div>
